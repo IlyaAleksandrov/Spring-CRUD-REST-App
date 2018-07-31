@@ -19,22 +19,28 @@ public class BookDaoImplTest extends EntityDaoImplTest{
 		return dataSet;
 	}
 
-	@Test
-	public void getBook(){
-		Assert.assertNotNull(bookDao.getBook(1));
-		Assert.assertNull(bookDao.getBook(3));
-	}
 
 	@Test
 	public void addBook(){
 		bookDao.addBook(getSampleBook());
 		Assert.assertEquals(bookDao.listBooks().size(), 3);
 	}
-	
+
+	@Test
+	public void updateBook(){
+		bookDao.updateBook(getSampleBook());
+		Assert.assertEquals(bookDao.getBook(0).getBookTitle(), "Moby Dick");
+	}
+
 	@Test
 	public void removeBook(){
 		bookDao.removeBook(1);
 		Assert.assertEquals(bookDao.listBooks().size(), 1);
+	}
+
+	@Test
+	public void getBook(){
+		Assert.assertNotNull(bookDao.getBook(1));
 	}
 
 	@Test
